@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Products | Muthende Store{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if products %}
+        <div class="products-grid">
+            {% for product in products %}
+                <a href="{% url 'product_detail' product.pk %}" class="product-card">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+                    {% else %}
+                        <div class="product-image placeholder-image">
+                            <span>No Image</span>
+                        </div>
+                    {% endif %}
+                    <div class="product-info">
+                        <div class="product-name">{{ product.name }}</div>
+                        <div class="product-price">KSh {{ product.price }}</div>
+                        <div class="product-description">{{ product.description }}</div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="no-products">
+            <p class="no-products-text">No products available at the moment.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
