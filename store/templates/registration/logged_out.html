@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Logged out | Muthende Store{% endblock %}
+
+{% block content %}
+<div class="container">
+  <p>You have been logged out.</p>
+  <a href="{% url 'login' %}">Log in again</a>
+</div>
+{% endblock %}

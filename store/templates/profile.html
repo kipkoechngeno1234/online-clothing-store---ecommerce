@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile | Muthende Store{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>Profile</h2>
+  <p>Username: {{ user.username }}</p>
+  <p>Email: {{ user.email }}</p>
+</div>
+{% endblock %}
