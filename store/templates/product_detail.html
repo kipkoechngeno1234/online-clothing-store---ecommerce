@@ -31,9 +31,20 @@
                 {{ product.description }}
             </p>
 
-            <button class="add-to-cart-btn">
-                Add to Cart
-            </button>
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url 'add_to_cart' product.pk %}" class="add-to-cart-form">
+                    {% csrf_token %}
+                    <div class="quantity-input-group">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" value="1" min="1" max="100" class="quantity-input">
+                    </div>
+                    <button type="submit" class="add-to-cart-btn">
+                        Add to Cart
+                    </button>
+                </form>
+            {% else %}
+                <p class="auth-message"><a href="{% url 'login' %}">Login</a> to add items to your cart.</p>
+            {% endif %}
 
             <p class="product-meta">
                 Added on: {{ product.created_at|date:"M d, Y" }}
